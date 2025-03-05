@@ -1,679 +1,984 @@
-<!DOCTYPE html>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #c00;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #c00;
+            border-bottom: 2px solid #c00;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #666;
+            margin-top: 20px;
+            border-left: 4px solid #c00;
+            padding-left: 10px;
+        }
+        .topic {
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #444;
+        }
+        .question-container {
+            background-color: white;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .question {
+            margin-bottom: 5px;
+        }
+        .rus-button {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 2px 5px;
+            margin-left: 10px;
+            font-size: 0.8em;
+            cursor: pointer;
+        }
+        .rus-translation {
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+            display: none;
+            border-left: 2px solid #ccc;
+            padding-left: 10px;
+        }
+        .lesson-vocabulary-button {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 8px 15px;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 4px;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+        .lesson-vocabulary-button:hover {
+            background-color: #d0d0d0;
+        }
+        .vocabulary-panel {
+            margin-top: 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #fff;
+        }
+        .vocabulary-section {
+            margin-top: 15px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .vocabulary-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #555;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .vocabulary-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .vocabulary-item {
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .lesson-vocabulary-container {
+            margin: 20px 0;
+        }
+        .lesson-divider {
+            border-top: 1px dashed #ddd;
+            margin: 10px 0;
+        }
+    </style>
+    </style>
+    </style><!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSK5 口语讨论话题与问题</title>
+    <title>HSK5级口语话题</title>
     <style>
         body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            max-width: 1000px;
-            margin: 0 auto;
+            margin: 0;
             padding: 20px;
-            background-color: #f8f9fa;
+            background-color: #f5f5f5;
+            color: #333;
         }
         h1 {
-            color: #1a5276;
             text-align: center;
+            color: #c00;
             margin-bottom: 30px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #3498db;
         }
         h2 {
-            color: #2874a6;
-            margin-top: 40px;
+            color: #c00;
+            border-bottom: 2px solid #c00;
             padding-bottom: 5px;
-            border-bottom: 1px solid #bde0fe;
+            margin-top: 30px;
         }
         h3 {
-            color: #2e86c1;
-            margin-top: 25px;
-        }
-        h4 {
-            color: #3498db;
-            margin-top: 15px;
-            font-size: 1.1em;
+            color: #666;
+            margin-top: 20px;
+            border-left: 4px solid #c00;
+            padding-left: 10px;
         }
         .topic {
-            background-color: #f1f8fe;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            border-left: 4px solid #3498db;
-        }
-        .questions {
-            background-color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-bottom: 25px;
-        }
-        .vocabulary {
-            display: none;
-            background-color: #f9f9f9;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 15px;
-            margin-bottom: 25px;
-        }
-        .vocab-section {
+            font-weight: bold;
+            font-style: italic;
             margin-bottom: 15px;
+            color: #444;
         }
-        .vocab-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            grid-gap: 8px;
-        }
-        .vocab-item {
-            padding: 5px;
-            border-bottom: 1px dashed #e0e0e0;
-        }
-        .sentences {
-            margin-top: 10px;
-        }
-        .toggle-vocab {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 10px;
-            font-size: 0.9em;
-        }
-        .toggle-vocab:hover {
-            background-color: #2980b9;
-        }
-        ol {
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 8px;
-        }
-        .unit {
-            margin-bottom: 40px;
+        .question-container {
             background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .lesson-container {
-            margin-bottom: 30px;
+        .question {
+            margin-bottom: 5px;
+        }
+        .rus-button {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 2px 5px;
+            margin-left: 10px;
+            font-size: 0.8em;
+            cursor: pointer;
+        }
+        .rus-translation {
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+            display: none;
+            border-left: 2px solid #ccc;
+            padding-left: 10px;
+        }
+        .vocabulary-toggle-button {
+            display: block;
+            margin: 20px auto;
+            padding: 8px 15px;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 4px;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .vocabulary-toggle-button:hover {
+            background-color: #d0d0d0;
+        }
+        .vocabulary-panel {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #fff;
+        }
+        .vocabulary-section {
+            margin-top: 15px;
+            background-color: #f9f9f9;
+            padding: A15px;
+            border-radius: 5px;
+        }
+        .vocabulary-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #555;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .vocabulary-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .vocabulary-item {
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .vocabulary-button-container {
+            margin: 20px 0;
+            border-top: 1px dashed #ddd;
+            padding-top: 20px;
         }
     </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HSK5级口语讨论话题与问题</h1>
+
+        <h2>Unit 1: 了解生活</h2>
+
+        <h3>第1课: 爱的细节</h3>
+        <div class="topic">讨论话题: 日常生活中的爱的表现</div>
+
+        <div class="question-container">
+            <div class="question">1. 你认为爱是通过哪些细节表现出来的？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Как, по вашему мнению, любовь проявляется в деталях?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">2. 在你的文化中，人们如何表达对家人的爱？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Как в вашей культуре люди выражают любовь к семье?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">3. 你觉得言语表达和行动表达哪个更重要？为什么？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Что важнее: словесное выражение или действия? Почему?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">4. 你曾经因为什么小事感受到别人对你的爱？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Из-за каких мелочей вы когда-либо чувствовали любовь других людей к вам?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">5. 你认为现代社会中人们表达爱的方式有什么变化？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Как, по вашему мнению, изменились способы выражения любви в современном обществе?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">6. 假如你的朋友忘记了你的生日，你会怎么反应？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Как вы отреагируете, если ваш друг забудет о вашем дне рождения?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">7. 你最感动的一次生日礼物是什么？谁送的？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Какой подарок на день рождения тронул вас больше всего? Кто его подарил?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">8. 如果可以选择，你更喜欢收到实用的礼物还是有纪念意义的礼物？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Если бы у вас был выбор, вы бы предпочли получить практичный подарок или подарок с памятным значением?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">9. 说说你上次为家人做的一件小事？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Расскажите о небольшом деле, которое вы недавно сделали для своей семьи?</div>
+        </div>
+
+        <div class="lesson-vocabulary-container">
+            <button class="lesson-vocabulary-button" onclick="toggleVocabulary('vocabulary-lesson1')">第1课词汇</button>
+            <div id="vocabulary-lesson1" class="vocabulary-panel" style="display: none;">
+                <div class="vocabulary-section">
+                    <div class="vocabulary-title">基础词汇:</div>
+                    <div class="vocabulary-list">
+                        <div class="vocabulary-item">爱 - любовь</div>
+                        <div class="vocabulary-item">细节 - деталь</div>
+                        <div class="vocabulary-item">表达 - выражать</div>
+                        <div class="vocabulary-item">关心 - забота</div>
+                        <div class="vocabulary-item">感动 - тронут</div>
+                        <div class="vocabulary-item">礼物 - подарок</div>
+                        <div class="vocabulary-item">记得 - помнить</div>
+                        <div class="vocabulary-item">生日 - день рождения</div>
+                        <div class="vocabulary-item">家人 - семья</div>
+                        <div class="vocabulary-item">朋友 - друг</div>
+                        <div class="vocabulary-item">感谢 - благодарность</div>
+                        <div class="vocabulary-item">习惯 - привычка</div>
+                        <div class="vocabulary-item">情感 - эмоция</div>
+                        <div class="vocabulary-item">方式 - способ</div>
+                        <div class="vocabulary-item">陪伴 - сопровождение</div>
+                    </div>
+                </div>
+
+                <div class="vocabulary-section">
+                    <div class="vocabulary-title">关键词汇:</div>
+                    <div class="vocabulary-list">
+                        <div class="vocabulary-item">爱的表现 - проявление любви</div>
+                        <div class="vocabulary-item">情感交流 - эмоциональное общение</div>
+                        <div class="vocabulary-item">心意传达 - передача намерений</div>
+                        <div class="vocabulary-item">无声关怀 - молчаливая забота</div>
+                        <div class="vocabulary-item">日常关爱 - повседневная забота</div>
+                        <div class="vocabulary-item">真挚表达 - искреннее выражение</div>
+                        <div class="vocabulary-item">语言表达 - словесное выражение</div>
+                        <div class="vocabulary-item">行动表达 - выражение действием</div>
+                        <div class="vocabulary-item">感人时刻 - трогательный момент</div>
+                        <div class="vocabulary-item">惊喜安排 - организация сюрприза</div>
+                        <div class="vocabulary-item">纪念意义 - памятное значение</div>
+                        <div class="vocabulary-item">实用价值 - практическая ценность</div>
+                        <div class="vocabulary-item">贴心举动 - внимательный жест</div>
+                        <div class="vocabulary-item">情感需求 - эмоциональные потребности</div>
+                        <div class="vocabulary-item">感动瞬间 - трогательный момент</div>
+                        <div class="vocabulary-item">情感联结 - эмоциональная связь</div>
+                        <div class="vocabulary-item">亲情表达 - выражение родственных чувств</div>
+                        <div class="vocabulary-item">感情深度 - глубина чувств</div>
+                        <div class="vocabulary-item">爱的语言 - язык любви</div>
+                        <div class="vocabulary-item">默默付出 - тихая самоотдача</div>
+                    </div>
+                </div>
+
+                <div class="vocabulary-section">
+                    <div class="vocabulary-title">实用句式:</div>
+                    <div class="vocabulary-list">
+                        <div class="vocabulary-item">我认为爱的细节体现在... - Я считаю, что детали любви проявляются в...</div>
+                        <div class="vocabulary-item">在我的文化中，人们通常通过...表达爱 - В моей культуре люди обычно выражают любовь через...</div>
+                        <div class="vocabulary-item">我觉得...比...更能表达爱 - Я считаю, что... выражает любовь лучше, чем...</div>
+                        <div class="vocabulary-item">我最感动的一次是... - Самым трогательным для меня было...</div>
+                        <div class="vocabulary-item">当朋友忘记我的生日，我会... - Когда друг забывает о моем дне рождения, я...</div>
+                        <div class="vocabulary-item">我更喜欢...类型的礼物，因为... - Я предпочитаю... тип подарков, потому что...</div>
+                        <div class="vocabulary-item">我认为现代社会中... - Я думаю, что в современном обществе...</div>
+                        <div class="vocabulary-item">对我来说，最重要的是... - Для меня самое важное - это...</div>
+                        <div class="vocabulary-item">我上次为家人做的事是... - В последний раз я сделал(а) для своей семьи...</div>
+                        <div class="vocabulary-item">这让我感到非常... - Это заставило меня чувствовать себя очень...</div>
+                    </div>
+                </div>
+            </div>
+            <div class="lesson-divider"></div>
+        </div>
+
+        <h3>第2课: 留串钥匙给父母</h3>
+        <div class="topic">讨论话题: 与父母的关系和独立</div>
+
+        <div class="question-container">
+            <div class="question">1. 你认为子女离家后应该如何与父母保持联系？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Как, по-вашему, дети должны поддерживать связь с родителями после того, как покинут дом?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">2. 在你的国家，成年人与父母的关系通常是怎样的？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Какими обычно бывают отношения между взрослыми и их родителями в вашей стране?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">3. "留串钥匙"象征着什么样的亲子关系？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Какие отношения между родителями и детьми символизирует "оставление ключей"?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">4. 你认为独立生活和孝顺父母之间如何取得平衡？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Как, по-вашему, найти баланс между независимой жизнью и почтительностью к родителям?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">5. 科技如何改变了现代家庭成员之间的沟通方式？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Как технологии изменили способы общения между членами современной семьи?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">6. 你多久回家看父母一次？每次回家会待多久？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Как часто вы навещаете родителей? Как долго обычно остаетесь дома?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">7. 你有没有收藏父母给你的东西？是什么？为什么要保存它？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Храните ли вы что-нибудь, что вам дали родители? Что это? Почему вы это храните?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">8. 如果你的父母想和你同住，你会同意吗？为什么？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Если бы ваши родители хотели жить с вами, согласились бы вы? Почему?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">9. 你和父母有没有什么特别的家庭传统或习惯？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Есть ли у вас с родителями какие-то особые семейные традиции или привычки?</div>
+        </div>
+
+        <div class="lesson-vocabulary-container">
+            <button class="lesson-vocabulary-button" onclick="toggleVocabulary('vocabulary-lesson2')">第2课词汇</button>
+            <div id="vocabulary-lesson2" class="vocabulary-panel" style="display: none;">
+                <div class="vocabulary-section">
+                    <div class="vocabulary-title">基础词汇:</div>
+                    <div class="vocabulary-list">
+                        <div class="vocabulary-item">钥匙 - ключ</div>
+                        <div class="vocabulary-item">父母 - родители</div>
+                        <div class="vocabulary-item">独立 - независимость</div>
+                        <div class="vocabulary-item">关系 - отношения</div>
+                        <div class="vocabulary-item">联系 - связь</div>
+                        <div class="vocabulary-item">孝顺 - почтительность</div>
+                        <div class="vocabulary-item">保持 - поддерживать</div>
+                        <div class="vocabulary-item">距离 - расстояние</div>
+                        <div class="vocabulary-item">空间 - пространство</div>
+                        <div class="vocabulary-item">信任 - доверие</div>
+                        <div class="vocabulary-item">传统 - традиция</div>
+                        <div class="vocabulary-item">沟通 - общение</div>
+                        <div class="vocabulary-item">代沟 - разрыв поколений</div>
+                        <div class="vocabulary-item">责任 - ответственность</div>
+                        <div class="vocabulary-item">自由 - свобода</div>
+                    </div>
+                </div>
+
+                <div class="vocabulary-section">
+                    <div class="vocabulary-title">关键词汇:</div>
+                    <div class="vocabulary-list">
+                        <div class="vocabulary-item">亲子关系 - отношения родителей и детей</div>
+                        <div class="vocabulary-item">情感纽带 - эмоциональная связь</div>
+                        <div class="vocabulary-item">互相尊重 - взаимное уважение</div>
+                        <div class="vocabulary-item">独立生活 - независимая жизнь</div>
+                        <div class="vocabulary-item">保持联系 - поддерживать связь</div>
+                        <div class="vocabulary-item">情感支持 - эмоциональная поддержка</div>
+                        <div class="vocabulary-item">代际沟通 - межпоколенческое общение</div>
+                        <div class="vocabulary-item">家庭价值观 - семейные ценности</div>
+                        <div class="vocabulary-item">心理距离 - психологическая дистанция</div>
+                        <div class="vocabulary-item">物理距离 - физическая дистанция</div>
+                        <div class="vocabulary-item">个人空间 - личное пространство</div>
+                        <div class="vocabulary-item">家庭传统 - семейные традиции</div>
+                        <div class="vocabulary-item">信任象征 - символ доверия</div>
+                        <div class="vocabulary-item">情感连接 - эмоциональная связь</div>
+                        <div class="vocabulary-item">成长过程 - процесс взросления</div>
+                        <div class="vocabulary-item">相互依赖 - взаимозависимость</div>
+                        <div class="vocabulary-item">文化差异 - культурные различия</div>
+                        <div class="vocabulary-item">家族关系 - родственные отношения</div>
+                        <div class="vocabulary-item">责任意识 - чувство ответственности</div>
+                        <div class="vocabulary-item">科技影响 - влияние технологий</div>
+                    </div>
+                </div>
+
+                <div class="vocabulary-section">
+                    <div class="vocabulary-title">实用句式:</div>
+                    <div class="vocabulary-list">
+                        <div class="vocabulary-item">我认为子女应该... - Я считаю, что дети должны...</div>
+                        <div class="vocabulary-item">在我的国家，成年人和父母... - В моей стране взрослые и их родители...</div>
+                        <div class="vocabulary-item">"留串钥匙"象征着... - "Оставление ключей" символизирует...</div>
+                        <div class="vocabulary-item">保持独立的同时，我会... - Сохраняя независимость, я...</div>
+                        <div class="vocabulary-item">我和父母通过...保持联系 - Я поддерживаю связь с родителями через...</div>
+                        <div class="vocabulary-item">我每...回家一次 - Я навещаю родителей каждые...</div>
+                        <div class="vocabulary-item">我珍藏的父母给我的东西是... - Вещь от родителей, которую я храню - это...</div>
+                        <div class="vocabulary-item">如果父母想和我同住，我会... - Если бы родители хотели жить со мной, я бы...</div>
+                        <div class="vocabulary-item">我们家有一个特别的传统是... - У нас есть особая семейная традиция...</div>
+                        <div class="vocabulary-item">科技改变了我们家庭的... - Технологии изменили... в нашей семье...</div>
+                    </div>
+                </div>
+            </div>
+            <div class="lesson-divider"></div>
+        </div>
+
+        <h3>第3课: 人生有选择，一切可改变</h3>
+        <div class="topic">讨论话题: 人生选择与改变</div>
+
+        <div class="question-container">
+            <div class="question">1. 你人生中做过的最重要的选择是什么？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Какой самый важный выбор вы сделали в своей жизни?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">2. 你认为一个人可以在任何年龄改变自己的人生轨迹吗？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Считаете ли вы, что человек может изменить траекторию своей жизни в любом возрасте?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">3. 面对困难选择时，你通常如何做决定？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Как вы обычно принимаете решения, сталкиваясь с трудным выбором?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">4. 你认为环境因素和个人选择哪个对人生影响更大？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Что, по вашему мнению, оказывает большее влияние на жизнь: факторы окружающей среды или личный выбор?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">5. 你曾经后悔过某个选择吗？如果可以重来，你会怎么做？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Сожалели ли вы когда-нибудь о каком-то выборе? Если бы вы могли начать заново, что бы вы сделали?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">6. 如果你可以穿越回过去，你会选择哪一年？会做什么？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Если бы вы могли вернуться в прошлое, какой год вы бы выбрали? Что бы вы сделали?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">7. 你的人生目标是什么？为了这个目标你正在做什么？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Какова ваша жизненная цель? Что вы делаете для достижения этой цели?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">8. 遇到突然的困难时，你通常会怎么应对？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Как вы обычно справляетесь с внезапными трудностями?</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">9. 你认为一个人改变自己最大的障碍是什么？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+            <div class="rus-translation">Какое, по вашему мнению, самое большое препятствие для человека в изменении себя?</div>
+        </div>
+
+        <div class="lesson-vocabulary-container">
+            <button class="lesson-vocabulary-button" onclick="toggleVocabulary('vocabulary-lesson3')">第3课词汇</button>
+            <div class="lesson-divider"></div>
+            <div id="vocabulary-lesson3" class="vocabulary-panel" style="display: none;">
+                <div class="vocabulary-section">
+                    <div class="vocabulary-title">基础词汇:</div>
+                    <div class="vocabulary-list">
+                        <div class="vocabulary-item">选择 - выбор</div>
+                        <div class="vocabulary-item">改变 - изменение</div>
+                        <div class="vocabulary-item">人生 - жизнь</div>
+                        <div class="vocabulary-item">决定 - решение</div>
+                        <div class="vocabulary-item">机会 - возможность</div>
+                        <div class="vocabulary-item">后悔 - сожаление</div>
+                        <div class="vocabulary-item">成长 - рост</div>
+                        <div class="vocabulary-item">挑战 - вызов</div>
+                        <div class="vocabulary-item">方向 - направление</div>
+                        <div class="vocabulary-item">可能性 - вероятность</div>
+                        <div class="vocabulary-item">目标 - цель</div>
+                        <div class="vocabulary-item">勇气 - смелость</div>
+                        <div class="vocabulary-item">经验 - опыт</div>
+                        <div class="vocabulary-item">困难 - трудность</div>
+                        <div class="vocabulary-item">态度 - отношение</div>
+                    </div>
+                </div>
+
+                <div class="vocabulary-section">
+                    <div class="vocabulary-title">关键词汇:</div>
+                    <div class="vocabulary-list">
+                        <div class="vocabulary-item">转折点 - поворотный момент</div>
+                        <div class="vocabulary-item">人生轨迹 - траектория жизни</div>
+                        <div class="vocabulary-item">权衡利弊 - взвешивание плюсов и минусов</div>
+                        <div class="vocabulary-item">三思而行 - трижды подумать перед действием</div>
+                        <div class="vocabulary-item">环境影响 - влияние окружения</div>
+                        <div class="vocabulary-item">人生目标 - жизненная цель</div>
+                        <div class="vocabulary-item">自我实现 - самореализация</div>
+                        <div class="vocabulary-item">积极面对 - позитивно встречать</div>
+                        <div class="vocabulary-item">舒适区 - зона комфорта</div>
+                        <div class="vocabulary-item">拥抱变化 - принимать изменения</div>
+                        <div class="vocabulary-item">冒险尝试 - рискованная попытка</div>
+                        <div class="vocabulary-item">改变命运 - изменить судьбу</div>
+                        <div class="vocabulary-item">自我突破 - самопреодоление</div>
+                        <div class="vocabulary-item">固有模式 - устоявшиеся модели</div>
+                        <div class="vocabulary-item">理性分析 - рациональный анализ</div>
+                        <div class="vocabulary-item">直觉判断 - интуитивное суждение</div>
+                        <div class="vocabulary-item">征求意见 - запрашивать мнения</div>
+                        <div class="vocabulary-item">考虑后果 - рассматривать последствия</div>
+                        <div class="vocabulary-item">社会因素 - социальные факторы</div>
+                        <div class="vocabulary-item">家庭背景 - семейное окружение</div>
+                        <div class="vocabulary-item">接受现实 - принять реальность</div>
+                        <div class="vocabulary-item">长远规划 - долгосрочное планирование</div>
+                        <div class="vocabulary-item">奋斗努力 - усердие и старание</div>
+                        <div class="vocabulary-item">应对策略 - стратегия реагирования</div>
+                        <div class="vocabulary-item">心理障碍 - психологический барьер</div>
+                    </div>
+                </div>
+
+                <div class="vocabulary-section">
+                    <div class="vocabulary-title">实用句式:</div>
+                    <div class="vocabulary-list">
+                        <div class="vocabulary-item">我人生中最重要的选择是... - Самым важным выбором в моей жизни был...</div>
+                        <div class="vocabulary-item">这个决定改变了我的... - Это решение изменило мое...</div>
+                        <div class="vocabulary-item">我认为年龄... - Я считаю, что возраст...</div>
+                        <div class="vocabulary-item">改变是可能的，只要... - Изменения возможны, если...</div>
+                        <div class="vocabulary-item">当我面临选择时，我会... - Когда я сталкиваюсь с выбором, я...</div>
+                        <div class="vocabulary-item">我认为...更重要，因为... - Я считаю, что... важнее, потому что...</div>
+                        <div class="vocabulary-item">如果可以重来，我会... - Если бы я мог(ла) всё переделать, я бы...</div>
+                        <div class="vocabulary-item">我的目标是... - Моя цель...</div>
+                        <div class="vocabulary-item">为了实现这个目标，我正在... - Чтобы достичь этой цели, я...</div>
+                        <div class="vocabulary-item">我相信一切皆有可能... - Я верю, что всё возможно...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<h2>Unit 2: 谈古说今</h2>
+
+<h3>第4课: 子路背米</h3>
+<div class="topic">讨论话题: 尊严与自尊</div>
+
+<div class="question-container">
+    <div class="question">1. 你如何理解"宁可自己吃苦也不要让别人看不起"这种态度？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Как вы понимаете отношение "лучше самому страдать, чем быть презираемым другими"?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">2. 在当今社会，人们是否还像子路那样看重尊严？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Ценят ли люди в современном обществе достоинство так же, как Цзы Лу?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">3. 你认为什么情况下接受他人帮助是合适的？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">В каких ситуациях, по вашему мнению, уместно принимать помощь от других?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">4. 不同文化对"自尊"的理解有什么差异？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Какие различия существуют в понимании "самоуважения" в разных культурах?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">5. 你曾经为了维护自尊而做出过什么决定？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Какие решения вы когда-либо принимали, чтобы сохранить самоуважение?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">6. 如果你很累但朋友需要帮忙，你会怎么做？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Что бы вы сделали, если бы вы были очень уставшими, но друг нуждался в помощи?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">7. 你觉得向别人求助会让你感到不舒服吗？为什么？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Чувствуете ли вы себя некомфортно, когда просите о помощи? Почему?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">8. 你曾经拒绝过别人的帮助吗？在什么情况下？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Отказывались ли вы когда-нибудь от помощи? В каких обстоятельствах?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">9. 在你看来，真正的朋友应该互相帮助到什么程度？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">По вашему мнению, до какой степени настоящие друзья должны помогать друг другу?</div>
+</div>
+
+<div class="lesson-vocabulary-container">
+    <button class="lesson-vocabulary-button" onclick="toggleVocabulary('vocabulary-lesson4')">第4课词汇</button>
+    <div id="vocabulary-lesson4" class="vocabulary-panel" style="display: none;">
+        <div class="vocabulary-section">
+            <div class="vocabulary-title">基础词汇:</div>
+            <div class="vocabulary-list">
+                <div class="vocabulary-item">尊严 - достоинство</div>
+                <div class="vocabulary-item">自尊 - самоуважение</div>
+                <div class="vocabulary-item">帮助 - помощь</div>
+                <div class="vocabulary-item">拒绝 - отказать</div>
+                <div class="vocabulary-item">骄傲 - гордость</div>
+                <div class="vocabulary-item">苦难 - страдание</div>
+                <div class="vocabulary-item">坚持 - настойчивость</div>
+                <div class="vocabulary-item">态度 - отношение</div>
+                <div class="vocabulary-item">原则 - принцип</div>
+                <div class="vocabulary-item">品格 - характер</div>
+                <div class="vocabulary-item">贫穷 - бедность</div>
+                <div class="vocabulary-item">背负 - нести</div>
+                <div class="vocabulary-item">吃苦 - страдать</div>
+                <div class="vocabulary-item">看不起 - презирать</div>
+                <div class="vocabulary-item">困境 - трудное положение</div>
+            </div>
+        </div>
+
+        <div class="vocabulary-section">
+            <div class="vocabulary-title">关键词汇:</div>
+            <div class="vocabulary-list">
+                <div class="vocabulary-item">维护尊严 - защищать достоинство</div>
+                <div class="vocabulary-item">宁可吃苦 - предпочесть страдать</div>
+                <div class="vocabulary-item">寻求帮助 - искать помощь</div>
+                <div class="vocabulary-item">自力更生 - самостоятельность</div>
+                <div class="vocabulary-item">接受现实 - принять реальность</div>
+                <div class="vocabulary-item">自尊心强 - сильное самоуважение</div>
+                <div class="vocabulary-item">人格尊严 - человеческое достоинство</div>
+                <div class="vocabulary-item">拒绝施舍 - отказаться от милостыни</div>
+                <div class="vocabulary-item">内心骄傲 - внутренняя гордость</div>
+                <div class="vocabulary-item">坚守原则 - придерживаться принципов</div>
+                <div class="vocabulary-item">相互尊重 - взаимное уважение</div>
+                <div class="vocabulary-item">文化差异 - культурные различия</div>
+                <div class="vocabulary-item">情境判断 - ситуационное суждение</div>
+                <div class="vocabulary-item">体面生活 - достойная жизнь</div>
+                <div class="vocabulary-item">价值取向 - ценностные ориентации</div>
+                <div class="vocabulary-item">请求帮助 - просить о помощи</div>
+                <div class="vocabulary-item">友谊界限 - границы дружбы</div>
+                <div class="vocabulary-item">个人独立 - личная независимость</div>
+                <div class="vocabulary-item">承担责任 - взять на себя ответственность</div>
+                <div class="vocabulary-item">面子问题 - вопрос репутации</div>
+            </div>
+        </div>
+
+        <div class="vocabulary-section">
+            <div class="vocabulary-title">实用句式:</div>
+            <div class="vocabulary-list">
+                <div class="vocabulary-item">我认为维护尊严应该... - Я считаю, что защита достоинства должна...</div>
+                <div class="vocabulary-item">在我的文化中，人们对帮助的态度是... - В моей культуре отношение людей к помощи...</div>
+                <div class="vocabulary-item">我宁可...也不愿意... - Я предпочту... чем...</div>
+                <div class="vocabulary-item">当我需要帮助时，我会... - Когда мне нужна помощь, я...</div>
+                <div class="vocabulary-item">我觉得接受帮助是... - Я считаю, что принимать помощь - это...</div>
+                <div class="vocabulary-item">如果朋友需要帮助，我会... - Если друг нуждается в помощи, я...</div>
+                <div class="vocabulary-item">在我看来，真正的朋友应该... - На мой взгляд, настоящие друзья должны...</div>
+                <div class="vocabulary-item">当我很累但别人需要帮助时，我... - Когда я очень устал, но кому-то нужна помощь, я...</div>
+                <div class="vocabulary-item">我曾经拒绝过帮助，因为... - Я когда-то отказался от помощи, потому что...</div>
+                <div class="vocabulary-item">自尊对我来说意味着... - Самоуважение для меня означает...</div>
+            </div>
+        </div>
+    </div>
+    <div class="lesson-divider"></div>
+</div>
+
+<h3>第5课: 济南的泉水</h3>
+<div class="topic">讨论话题: 自然景观与城市特色</div>
+
+<div class="question-container">
+    <div class="question">1. 你的家乡有什么独特的自然景观？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Какие уникальные природные достопримечательности есть в вашем родном городе?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">2. 自然景观对一个城市的文化和历史有什么影响？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Какое влияние оказывают природные ландшафты на культуру и историю города?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">3. 你认为保护城市的自然景观重要吗？为什么？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Считаете ли вы важным сохранять природные ландшафты города? Почему?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">4. 如果你去参观济南，除了泉水，你还想了解这个城市的什么？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Если бы вы посетили Цзинань, что еще, кроме источников, вы хотели бы узнать об этом городе?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">5. 你更喜欢参观自然景观还是人文景观？为什么？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Вы предпочитаете посещать природные достопримечательности или культурные? Почему?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">6. 你去过最特别的一个地方是哪里？有什么让你印象深刻的事？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Какое самое особенное место вы посещали? Что произвело на вас наибольшее впечатление?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">7. 你喜欢拍照记录旅行吗？还是喜欢纯粹地体验？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Вы любите фотографировать во время путешествий или предпочитаете просто наслаждаться опытом?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">8. 如果要推荐外国朋友参观你的家乡，你会带他们去哪里？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Если бы вам нужно было порекомендовать иностранным друзьям посетить ваш родной город, куда бы вы их повели?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">9. 你认为旅游对当地环境有什么影响？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Какое влияние, по вашему мнению, оказывает туризм на местную среду?</div>
+</div>
+
+<div class="lesson-vocabulary-container">
+    <button class="lesson-vocabulary-button" onclick="toggleVocabulary('vocabulary-lesson5')">第5课词汇</button>
+    <div id="vocabulary-lesson5" class="vocabulary-panel" style="display: none;">
+        <div class="vocabulary-section">
+            <div class="vocabulary-title">基础词汇:</div>
+            <div class="vocabulary-list">
+                <div class="vocabulary-item">泉水 - родник</div>
+                <div class="vocabulary-item">景观 - ландшафт</div>
+                <div class="vocabulary-item">名胜 - достопримечательность</div>
+                <div class="vocabulary-item">城市 - город</div>
+                <div class="vocabulary-item">特色 - особенность</div>
+                <div class="vocabulary-item">文化 - культура</div>
+                <div class="vocabulary-item">历史 - история</div>
+                <div class="vocabulary-item">保护 - защита</div>
+                <div class="vocabulary-item">旅游 - туризм</div>
+                <div class="vocabulary-item">参观 - посетить</div>
+                <div class="vocabulary-item">印象 - впечатление</div>
+                <div class="vocabulary-item">环境 - окружающая среда</div>
+                <div class="vocabulary-item">照片 - фотография</div>
+                <div class="vocabulary-item">体验 - опыт</div>
+                <div class="vocabulary-item">推荐 - рекомендовать</div>
+            </div>
+        </div>
+
+        <div class="vocabulary-section">
+            <div class="vocabulary-title">关键词汇:</div>
+            <div class="vocabulary-list">
+                <div class="vocabulary-item">自然景观 - природный ландшафт</div>
+                <div class="vocabulary-item">人文景观 - культурный ландшафт</div>
+                <div class="vocabulary-item">城市特色 - городская особенность</div>
+                <div class="vocabulary-item">文化遗产 - культурное наследие</div>
+                <div class="vocabulary-item">历史价值 - историческая ценность</div>
+                <div class="vocabulary-item">环境保护 - защита окружающей среды</div>
+                <div class="vocabulary-item">旅游资源 - туристические ресурсы</div>
+                <div class="vocabulary-item">深刻印象 - глубокое впечатление</div>
+                <div class="vocabulary-item">特色景点 - особенные достопримечательности</div>
+                <div class="vocabulary-item">文化底蕴 - культурная основа</div>
+                <div class="vocabulary-item">地理环境 - географическая среда</div>
+                <div class="vocabulary-item">旅游体验 - туристический опыт</div>
+                <div class="vocabulary-item">城市规划 - городское планирование</div>
+                <div class="vocabulary-item">视觉记录 - визуальная запись</div>
+                <div class="vocabulary-item">旅游推广 - продвижение туризма</div>
+                <div class="vocabulary-item">生态平衡 - экологический баланс</div>
+                <div class="vocabulary-item">游客影响 - влияние туристов</div>
+                <div class="vocabulary-item">可持续发展 - устойчивое развитие</div>
+                <div class="vocabulary-item">民间故事 - народные истории</div>
+                <div class="vocabulary-item">地方特产 - местные специалитеты</div>
+            </div>
+        </div>
+
+        <div class="vocabulary-section">
+            <div class="vocabulary-title">实用句式:</div>
+            <div class="vocabulary-list">
+                <div class="vocabulary-item">我的家乡有一个特别的... - В моем родном городе есть особый...</div>
+                <div class="vocabulary-item">这个地方令人印象深刻因为... - Это место производит глубокое впечатление, потому что...</div>
+                <div class="vocabulary-item">我认为保护自然景观很重要，因为... - Я считаю, что защита природных ландшафтов важна, потому что...</div>
+                <div class="vocabulary-item">如果我去参观...，我会... - Если я посещу..., я бы...</div>
+                <div class="vocabulary-item">我更喜欢...类型的景点，因为... - Я предпочитаю... тип достопримечательностей, потому что...</div>
+                <div class="vocabulary-item">我去过的最特别的地方是...，那里... - Самое особенное место, которое я посетил, это..., там...</div>
+                <div class="vocabulary-item">旅行时，我喜欢... - Во время путешествий я люблю...</div>
+                <div class="vocabulary-item">我会推荐外国朋友去...，因为... - Я бы порекомендовал иностранным друзьям посетить..., потому что...</div>
+                <div class="vocabulary-item">我认为旅游对当地环境的影响是... - Я считаю, что влияние туризма на местную среду...</div>
+                <div class="vocabulary-item">这个地方让我感到... - Это место заставляет меня чувствовать...</div>
+            </div>
+        </div>
+    </div>
+    <div class="lesson-divider"></div>
+</div>
+
+<h3>第6课: 除夕的由来</h3>
+<div class="topic">讨论话题: 传统节日的意义与变迁</div>
+
+<div class="question-container">
+    <div class="question">1. 你知道除夕的传统习俗有哪些？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Какие традиционные обычаи канун Нового года по лунному календарю вы знаете?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">2. 在你的国家，最重要的传统节日是什么？人们如何庆祝？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Какой самый важный традиционный праздник в вашей стране? Как люди его празднуют?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">3. 你认为传统节日在现代社会中的意义有什么变化？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Как, по вашему мнению, изменилось значение традиционных праздников в современном обществе?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">4. 你如何看待年轻人对传统节日态度的改变？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Как вы относитесь к изменению отношения молодежи к традиционным праздникам?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">5. 你觉得应该如何平衡传统习俗与现代生活方式？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Как, по-вашему, следует балансировать традиционные обычаи и современный образ жизни?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">6. 你最喜欢哪个传统节日的食物？为什么？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Какую традиционную праздничную еду вы любите больше всего? Почему?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">7. 你有没有特别想体验的其他国家的节日？是什么？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Есть ли праздник другой страны, который вы особенно хотели бы испытать? Какой?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">8. 你认为年轻人应该被强制参与传统节日活动吗？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Считаете ли вы, что молодежь должна быть обязана участвовать в традиционных праздничных мероприятиях?</div>
+</div>
+
+<div class="question-container">
+    <div class="question">9. 你会给孩子讲节日背后的故事和传说吗？<span class="rus-button" onclick="toggleTranslation(this)">рус</span></div>
+    <div class="rus-translation">Будете ли вы рассказывать детям истории и легенды, стоящие за праздниками?</div>
+</div>
+
+<div class="lesson-vocabulary-container">
+    <button class="lesson-vocabulary-button" onclick="toggleVocabulary('vocabulary-lesson6')">第6课词汇</button>
+    <div id="vocabulary-lesson6" class="vocabulary-panel" style="display: none;">
+        <div class="vocabulary-section">
+            <div class="vocabulary-title">基础词汇:</div>
+            <div class="vocabulary-list">
+                <div class="vocabulary-item">传统 - традиция</div>
+                <div class="vocabulary-item">节日 - праздник</div>
+                <div class="vocabulary-item">习俗 - обычай</div>
+                <div class="vocabulary-item">庆祝 - праздновать</div>
+                <div class="vocabulary-item">年轻人 - молодежь</div>
+                <div class="vocabulary-item">由来 - происхождение</div>
+                <div class="vocabulary-item">故事 - история</div>
+                <div class="vocabulary-item">传说 - легенда</div>
+                <div class="vocabulary-item">食物 - еда</div>
+                <div class="vocabulary-item">家庭 - семья</div>
+                <div class="vocabulary-item">活动 - деятельность</div>
+                <div class="vocabulary-item">现代 - современный</div>
+                <div class="vocabulary-item">意义 - значение</div>
+                <div class="vocabulary-item">变化 - изменение</div>
+                <div class="vocabulary-item">态度 - отношение</div>
+            </div>
+        </div>
+
+        <div class="vocabulary-section">
+            <div class="vocabulary-title">关键词汇:</div>
+            <div class="vocabulary-list">
+                <div class="vocabulary-item">传统节日 - традиционный праздник</div>
+                <div class="vocabulary-item">文化习俗 - культурные обычаи</div>
+                <div class="vocabulary-item">年俗活动 - новогодние обычаи</div>
+                <div class="vocabulary-item">历史由来 - историческое происхождение</div>
+                <div class="vocabulary-item">民间传说 - народная легенда</div>
+                <div class="vocabulary-item">家庭团聚 - семейное воссоединение</div>
+                <div class="vocabulary-item">节日食物 - праздничная еда</div>
+                <div class="vocabulary-item">传统与现代 - традиция и современность</div>
+                <div class="vocabulary-item">文化传承 - культурная преемственность</div>
+                <div class="vocabulary-item">代际差异 - поколенческие различия</div>
+                <div class="vocabulary-item">价值观念 - ценностные представления</div>
+                <div class="vocabulary-item">社会变迁 - социальные изменения</div>
+                <div class="vocabulary-item">全球化影响 - влияние глобализации</div>
+                <div class="vocabulary-item">民族特色 - национальные особенности</div>
+                <div class="vocabulary-item">文化认同 - культурная идентичность</div>
+                <div class="vocabulary-item">强制参与 - принудительное участие</div>
+                <div class="vocabulary-item">自由选择 - свободный выбор</div>
+                <div class="vocabulary-item">教育意义 - образовательное значение</div>
+                <div class="vocabulary-item">情感连接 - эмоциональная связь</div>
+                <div class="vocabulary-item">文化交流 - культурный обмен</div>
+            </div>
+        </div>
+
+        <div class="vocabulary-section">
+            <div class="vocabulary-title">实用句式:</div>
+            <div class="vocabulary-list">
+                <div class="vocabulary-item">在我的国家，最重要的传统节日是... - В моей стране самый важный традиционный праздник - это...</div>
+                <div class="vocabulary-item">人们庆祝这个节日的方式是... - Люди празднуют этот праздник так...</div>
+                <div class="vocabulary-item">这个传统的由来是... - Происхождение этой традиции...</div>
+                <div class="vocabulary-item">现代社会中，这个节日的意义... - В современном обществе значение этого праздника...</div>
+                <div class="vocabulary-item">年轻人对传统节日的态度... - Отношение молодежи к традиционным праздникам...</div>
+                <div class="vocabulary-item">我认为传统习俗和现代生活应该... - Я считаю, что традиционные обычаи и современная жизнь должны...</div>
+                <div class="vocabulary-item">我最喜欢的节日食物是...，因为... - Моя любимая праздничная еда - это..., потому что...</div>
+                <div class="vocabulary-item">我想体验的其他国家的节日是... - Праздник другой страны, который я хотел бы испытать - это...</div>
+                <div class="vocabulary-item">关于强制参与传统活动，我的看法是... - Насчет обязательного участия в традиционных мероприятиях, мое мнение...</div>
+                <div class="vocabulary-item">向孩子们讲述传统故事是重要的，因为... - Рассказывать детям традиционные истории важно, потому что...</div>
+            </div>
+        </div>
+    </div>
+    <div class="lesson-divider"></div>
+</div>
+        <!-- 其他课程内容将在这里添加 -->
+
+    </div>
+
     <script>
-        function toggleVocabulary(lessonId) {
-            var vocab = document.getElementById('vocab-' + lessonId);
-            if (vocab.style.display === 'none' || vocab.style.display === '') {
-                vocab.style.display = 'block';
-                document.getElementById('btn-' + lessonId).textContent = '隐藏词汇';
+        function toggleTranslation(button) {
+            const translation = button.parentNode.nextElementSibling;
+            if (translation.style.display === "none" || translation.style.display === "") {
+                translation.style.display = "block";
             } else {
-                vocab.style.display = 'none';
-                document.getElementById('btn-' + lessonId).textContent = '显示词汇';
+                translation.style.display = "none";
+            }
+        }
+        
+        function toggleVocabulary(id) {
+            const vocabPanel = document.getElementById(id);
+            if (vocabPanel.style.display === "none" || vocabPanel.style.display === "") {
+                vocabPanel.style.display = "block";
+            } else {
+                vocabPanel.style.display = "none";
             }
         }
     </script>
-</head>
-<body>
-    <h1>HSK标准教程五级口语讨论话题与问题</h1>
-
-    <div class="unit">
-        <h2>Unit 1: 了解生活</h2>
-
-        <div class="lesson-container">
-            <h3>第1课: 爱的细节</h3>
-            <div class="topic"><strong>讨论话题: 日常生活中的爱的表现</strong></div>
-            <div class="questions">
-                <ol>
-                    <li>你认为爱是通过哪些细节表现出来的？</li>
-                    <li>在你的文化中，人们如何表达对家人的爱？</li>
-                    <li>你觉得言语表达和行动表达哪个更重要？为什么？</li>
-                    <li>你曾经因为什么小事感受到别人对你的爱？</li>
-                    <li>你认为现代社会中人们表达爱的方式有什么变化？</li>
-                    <li>假如你的朋友忘记了你的生日，你会怎么反应？</li>
-                    <li>你最感动的一次生日礼物是什么？谁送的？</li>
-                    <li>如果可以选择，你更喜欢收到实用的礼物还是有纪念意义的礼物？</li>
-                    <li>说说你上次为家人做的一件小事？</li>
-                </ol>
-            </div>
-            <button id="btn-lesson1" class="toggle-vocab" onclick="toggleVocabulary('lesson1')">显示词汇</button>
-            <div id="vocab-lesson1" class="vocabulary">
-                <h4>基础词汇</h4>
-                <div class="vocab-list">
-                    <div class="vocab-item">关心 - забота</div>
-                    <div class="vocab-item">体贴 - внимательность</div>
-                    <div class="vocab-item">细节 - детали</div>
-                    <div class="vocab-item">表达 - выражать</div>
-                    <div class="vocab-item">感受 - ощущать</div>
-                    <div class="vocab-item">情感 - эмоции</div>
-                    <div class="vocab-item">真诚 - искренность</div>
-                    <div class="vocab-item">付出 - отдавать</div>
-                    <div class="vocab-item">温暖 - теплота</div>
-                    <div class="vocab-item">陪伴 - сопровождение</div>
-                </div>
-                
-                <div class="vocab-section">
-                    <h4>问题1: 爱是通过哪些细节表现出来的？</h4>
-                    <div class="vocab-list">
-                        <div class="vocab-item">日常生活 - повседневная жизнь</div>
-                        <div class="vocab-item">一举一动 - каждое движение</div>
-                        <div class="vocab-item">默默付出 - безмолвно отдавать</div>
-                        <div class="vocab-item">记得喜好 - помнить предпочтения</div>
-                        <div class="vocab-item">无私奉献 - бескорыстная преданность</div>
-                        <div class="vocab-item">尊重对方 - уважать другого</div>
-                        <div class="vocab-item">包容缺点 - принимать недостатки</div>
-                    </div>
-                    <div class="sentences">
-                        <strong>常用句式:</strong>
-                        <ul>
-                            <li>爱体现在...方面 - Любовь проявляется в аспекте...</li>
-                            <li>我认为...是爱的表现 - Я считаю, что... это проявление любви</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="vocab-section">
-                    <h4>问题2: 在你的文化中，人们如何表达对家人的爱？</h4>
-                    <div class="vocab-list">
-                        <div class="vocab-item">文化差异 - культурные различия</div>
-                        <div class="vocab-item">家庭传统 - семейные традиции</div>
-                        <div class="vocab-item">代际关系 - межпоколенческие отношения</div>
-                        <div class="vocab-item">礼物馈赠 - дарение подарков</div>
-                        <div class="vocab-item">口头表达 - устное выражение</div>
-                        <div class="vocab-item">言传身教 - учить словом и примером</div>
-                        <div class="vocab-item">情感交流 - эмоциональный обмен</div>
-                    </div>
-                    <div class="sentences">
-                        <strong>常用句式:</strong>
-                        <ul>
-                            <li>在我的文化中，... - В моей культуре...</li>
-                            <li>...是表达爱的常见方式 - ... это обычный способ выражения любви</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="vocab-section">
-                    <h4>问题3: 言语表达和行动表达哪个更重要？</h4>
-                    <div class="vocab-list">
-                        <div class="vocab-item">言行一致 - соответствие слов и дел</div>
-                        <div class="vocab-item">行胜于言 - действия важнее слов</div>
-                        <div class="vocab-item">实际行动 - реальные действия</div>
-                        <div class="vocab-item">直接表白 - прямое признание</div>
-                        <div class="vocab-item">内敛含蓄 - сдержанность</div>
-                        <div class="vocab-item">因人而异 - зависит от человека</div>
-                        <div class="vocab-item">文化背景 - культурный фон</div>
-                    </div>
-                    <div class="sentences">
-                        <strong>常用句式:</strong>
-                        <ul>
-                            <li>我认为...更重要，因为... - Я считаю, что... важнее, потому что...</li>
-                            <li>两者都很重要，但... - Оба важны, но...</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="vocab-section">
-                    <h4>问题4-5: 朋友忘记生日和感动的礼物</h4>
-                    <div class="vocab-list">
-                        <div class="vocab-item">理解包容 - понимание и терпимость</div>
-                        <div class="vocab-item">失望 - разочарование</div>
-                        <div class="vocab-item">在意 - заботиться</div>
-                        <div class="vocab-item">提醒 - напоминать</div>
-                        <div class="vocab-item">感动 - тронутый</div>
-                        <div class="vocab-item">惊喜 - сюрприз</div>
-                        <div class="vocab-item">精心准备 - тщательная подготовка</div>
-                        <div class="vocab-item">手工制作 - ручная работа</div>
-                        <div class="vocab-item">用心良苦 - вложить душу</div>
-                        <div class="vocab-item">意义非凡 - особое значение</div>
-                    </div>
-                    <div class="sentences">
-                        <strong>常用句式:</strong>
-                        <ul>
-                            <li>我会感到...但是... - Я бы почувствовал..., но...</li>
-                            <li>最让我感动的是... - Больше всего меня тронуло...</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="vocab-section">
-                    <h4>扩展词汇和句式</h4>
-                    <div class="vocab-list">
-                        <div class="vocab-item">倾听对方 - выслушивать другого</div>
-                        <div class="vocab-item">分享喜悦 - делиться радостью</div>
-                        <div class="vocab-item">共度难关 - вместе преодолевать трудности</div>
-                        <div class="vocab-item">相互信任 - взаимное доверие</div>
-                        <div class="vocab-item">互相尊重 - взаимное уважение</div>
-                        <div class="vocab-item">心存感激 - испытывать благодарность</div>
-                        <div class="vocab-item">被珍视 - быть ценимым</div>
-                        <div class="vocab-item">被关怀 - быть окруженным заботой</div>
-                        <div class="vocab-item">安全感 - чувство безопасности</div>
-                        <div class="vocab-item">被理解 - быть понятым</div>
-                    </div>
-                    <div class="sentences">
-                        <strong>实用句式:</strong>
-                        <ul>
-                            <li>爱不仅仅是... - Любовь - это не только...</li>
-                            <li>我认识到爱在于... - Я осознаю, что любовь заключается в...</li>
-                            <li>最重要的是... - Самое важное...</li>
-                            <li>对我来说，...意味着爱 - Для меня... означает любовь</li>
-                            <li>爱需要双方共同... - Любовь требует от обеих сторон...</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="lesson-container">
-            <h3>第2课: 留串钥匙给父母</h3>
-            <div class="topic"><strong>讨论话题: 与父母的关系和独立</strong></div>
-            <div class="questions">
-                <ol>
-                    <li>你认为子女离家后应该如何与父母保持联系？</li>
-                    <li>在你的国家，成年人与父母的关系通常是怎样的？</li>
-                    <li>"留串钥匙"象征着什么样的亲子关系？</li>
-                    <li>你认为独立生活和孝顺父母之间如何取得平衡？</li>
-                    <li>科技如何改变了现代家庭成员之间的沟通方式？</li>
-                    <li>你多久回家看父母一次？每次回家会待多久？</li>
-                    <li>你有没有收藏父母给你的东西？是什么？为什么要保存它？</li>
-                    <li>如果你的父母想和你同住，你会同意吗？为什么？</li>
-                    <li>你和父母有没有什么特别的家庭传统或习惯？</li>
-                </ol>
-            </div>
-            <button id="btn-lesson2" class="toggle-vocab" onclick="toggleVocabulary('lesson2')">显示词汇</button>
-            <div id="vocab-lesson2" class="vocabulary">
-                <h4>基础词汇</h4>
-                <div class="vocab-list">
-                    <div class="vocab-item">钥匙 - ключи</div>
-                    <div class="vocab-item">父母 - родители</div>
-                    <div class="vocab-item">留下 - оставлять</div>
-                    <div class="vocab-item">独立 - независимость</div>
-                    <div class="vocab-item">关系 - отношения</div>
-                    <div class="vocab-item">距离 - расстояние</div>
-                    <div class="vocab-item">信任 - доверие</div>
-                    <div class="vocab-item">家庭 - семья</div>
-                    <div class="vocab-item">情感 - эмоции</div>
-                    <div class="vocab-item">责任 - ответственность</div>
-                </div>
-                
-                <div class="vocab-section">
-                    <h4>问题1: 子女离家后应该如何与父母保持联系？</h4>
-                    <div class="vocab-list">
-                        <div class="vocab-item">定期联系 - регулярный контакт</div>
-                        <div class="vocab-item">电话问候 - телефонные звонки</div>
-                        <div class="vocab-item">视频通话 - видеозвонки</div>
-                        <div class="vocab-item">社交媒体 - социальные сети</div>
-                        <div class="vocab-item">回家探望 - навещать родителей</div>
-                        <div class="vocab-item">书信往来 - переписка</div>
-                        <div class="vocab-item">情感纽带 - эмоциональная связь</div>
-                    </div>
-                    <div class="sentences">
-                        <strong>常用句式:</strong>
-                        <ul>
-                            <li>我觉得应该... - Я думаю, что следует...</li>
-                            <li>保持联系的最好方式是... - Лучший способ поддерживать связь - это...</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="vocab-section">
-                    <h4>问题2: 成年人与父母的关系</h4>
-                    <div class="vocab-list">
-                        <div class="vocab-item">文化传统 - культурные традиции</div>
-                        <div class="vocab-item">家庭观念 - семейные ценности</div>
-                        <div class="vocab-item">代际差异 - разница поколений</div>
-                        <div class="vocab-item">同住共居 - совместное проживание</div>
-                        <div class="vocab-item">经济支持 - финансовая поддержка</div>
-                        <div class="vocab-item">精神寄托 - духовная опора</div>
-                        <div class="vocab-item">隐私边界 - границы личной жизни</div>
-                    </div>
-                    <div class="sentences">
-                        <strong>常用句式:</strong>
-                        <ul>
-                            <li>在我国，通常... - В моей стране обычно...</li>
-                            <li>...是普遍现象 - ... является распространенным явлением</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="vocab-section">
-                    <h4>问题3: "留串钥匙"的象征意义</h4>
-                    <div class="vocab-list">
-                        <div class="vocab-item">象征意义 - символическое значение</div>
-                        <div class="vocab-item">敞开心扉 - открытость</div>
-                        <div class="vocab-item">无条件接纳 - безусловное принятие</div>
-                        <div class="vocab-item">心灵港湾 - душевная гавань</div>
-                        <div class="vocab-item">情感依靠 - эмоциональная опора</div>
-                        <div class="vocab-item">相互尊重 - взаимное уважение</div>
-                        <div class="vocab-item">心理空间 - психологическое пространство</div>
-                    </div>
-                    <div class="sentences">
-                        <strong>常用句式:</strong>
-                        <ul>
-                            <li>"留串钥匙"代表着... - "Оставление ключей" представляет собой...</li>
-                            <li>这个行为象征... - Этот поступок символизирует...</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="vocab-section">
-                    <h4>问题4-5: 回家探亲和收藏物品</h4>
-                    <div class="vocab-list">
-                        <div class="vocab-item">探亲频率 - частота посещений</div>
-                        <div class="vocab-item">假期安排 - планирование выходных</div>
-                        <div class="vocab-item">时间分配 - распределение времени</div>
-                        <div class="vocab-item">短暂停留 - краткое пребывание</div>
-                        <div class="vocab-item">收藏品 - коллекция</div>
-                        <div class="vocab-item">纪念意义 - памятное значение</div>
-                        <div class="vocab-item">情感价值 - эмоциональная ценность</div>
-                        <div class="vocab-item">童年回忆 - детские воспоминания</div>
-                        <div class="vocab-item">传家宝 - семейная реликвия</div>
-                        <div class="vocab-item">怀旧情绪 - ностальгия</div>
-                    </div>
-                    <div class="sentences">
-                        <strong>常用句式:</strong>
-                        <ul>
-                            <li>我大约每...回家一次 - Я навещаю родителей примерно раз в...</li>
-                            <li>我保存了... - Я сохранил(а)...</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="vocab-section">
-                    <h4>扩展词汇和句式</h4>
-                    <div class="vocab-list">
-                        <div class="vocab-item">亲密无间 - очень близкие</div>
-                        <div class="vocab-item">若即若离 - и близко, и далеко</div>
-                        <div class="vocab-item">互相支持 - взаимная поддержка</div>
-                        <div class="vocab-item">情感依赖 - эмоциональная зависимость</div>
-                        <div class="vocab-item">代沟 - разрыв поколений</div>
-                        <div class="vocab-item">思念之情 - чувство тоски</div>
-                        <div class="vocab-item">血浓于水 - кровь гуще воды</div>
-                        <div class="vocab-item">骨肉亲情 - кровные узы</div>
-                        <div class="vocab-item">心系家人 - душой с семьей</div>
-                        <div class="vocab-item">温情脉脉 - сердечный, теплый</div>
-                    </div>
-                    <div class="sentences">
-                        <strong>实用句式:</strong>
-                        <ul>
-                            <li>虽然我们住得很远，但... - Хотя мы живем далеко друг от друга...</li>
-                            <li>对我来说，家是... - Для меня дом - это...</li>
-                            <li>我和父母的关系是... - Мои отношения с родителями...</li>
-                            <li>随着年龄增长，我们的关系... - С возрастом наши отношения...</li>
-                            <li>我最珍视的是... - Больше всего я ценю...</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-目标你正在做什么？</li>
-                <li>遇到突然的困难时，你通常会怎么应对？</li>
-                <li>你认为一个人改变自己最大的障碍是什么？</li>
-            </ol>
-        </div>
-    </div>
-
-    <div class="unit">
-        <h2>Unit 2: 谈古说今</h2>
-
-        <h3>第4课: 子路背米</h3>
-        <div class="topic"><strong>讨论话题: 尊严与自尊</strong></div>
-        <div class="questions">
-            <ol>
-                <li>你如何理解"宁可自己吃苦也不要让别人看不起"这种态度？</li>
-                <li>在当今社会，人们是否还像子路那样看重尊严？</li>
-                <li>你认为什么情况下接受他人帮助是合适的？</li>
-                <li>不同文化对"自尊"的理解有什么差异？</li>
-                <li>你曾经为了维护自尊而做出过什么决定？</li>
-                <li>如果你很累但朋友需要帮忙，你会怎么做？</li>
-                <li>你觉得向别人求助会让你感到不舒服吗？为什么？</li>
-                <li>你曾经拒绝过别人的帮助吗？在什么情况下？</li>
-                <li>在你看来，真正的朋友应该互相帮助到什么程度？</li>
-            </ol>
-        </div>
-
-        <h3>第5课: 济南的泉水</h3>
-        <div class="topic"><strong>讨论话题: 自然景观与城市特色</strong></div>
-        <div class="questions">
-            <ol>
-                <li>你的家乡有什么独特的自然景观？</li>
-                <li>自然景观对一个城市的文化和历史有什么影响？</li>
-                <li>你认为保护城市的自然景观重要吗？为什么？</li>
-                <li>如果你去参观济南，除了泉水，你还想了解这个城市的什么？</li>
-                <li>你更喜欢参观自然景观还是人文景观？为什么？</li>
-                <li>你去过最特别的一个地方是哪里？有什么让你印象深刻的事？</li>
-                <li>你喜欢拍照记录旅行吗？还是喜欢纯粹地体验？</li>
-                <li>如果要推荐外国朋友参观你的家乡，你会带他们去哪里？</li>
-                <li>你认为旅游对当地环境有什么影响？</li>
-            </ol>
-        </div>
-
-        <h3>第6课: 除夕的由来</h3>
-        <div class="topic"><strong>讨论话题: 传统节日的意义与变迁</strong></div>
-        <div class="questions">
-            <ol>
-                <li>你知道除夕的传统习俗有哪些？</li>
-                <li>在你的国家，最重要的传统节日是什么？人们如何庆祝？</li>
-                <li>你认为传统节日在现代社会中的意义有什么变化？</li>
-                <li>你如何看待年轻人对传统节日态度的改变？</li>
-                <li>你觉得应该如何平衡传统习俗与现代生活方式？</li>
-                <li>你最喜欢哪个传统节日的食物？为什么？</li>
-                <li>你有没有特别想体验的其他国家的节日？是什么？</li>
-                <li>你认为年轻人应该被强制参与传统节日活动吗？</li>
-                <li>你会给孩子讲节日背后的故事和传说吗？</li>
-            </ol>
-        </div>
-    </div>
-
-    <div class="unit">
-        <h2>Unit 3: 倾听故事</h2>
-
-        <h3>第7课: 成语故事两则</h3>
-        <div class="topic"><strong>讨论话题: 语言中的文化智慧</strong></div>
-        <div class="questions">
-            <ol>
-                <li>你最喜欢的中文成语是什么？它有什么意思？</li>
-                <li>在你的母语中，有类似成语的表达方式吗？举个例子。</li>
-                <li>你认为学习成语对理解中国文化有多重要？</li>
-                <li>现代年轻人还经常使用成语吗？为什么？</li>
-                <li>你曾经因为不了解某个成语的意思而误解对话吗？</li>
-                <li>你能用一个成语形容你昨天的一天吗？</li>
-                <li>如果要用成语来描述你的性格，你会选择哪个？</li>
-                <li>你有没有在日常对话中脱口而出成语的经历？</li>
-                <li>你能不能编一个短故事，里面用上三个成语？</li>
-            </ol>
-        </div>
-
-        <h3>第8课: "朝三暮四"的古今义</h3>
-        <div class="topic"><strong>讨论话题: 语言的演变与理解</strong></div>
-        <div class="questions">
-            <ol>
-                <li>你知道哪些词语在历史上改变了含义？</li>
-                <li>你认为语言变化是好事还是坏事？为什么？</li>
-                <li>你在学习汉语时，有没有因为词语的多重含义而感到困惑？</li>
-                <li>你觉得了解成语的原始故事对正确使用成语重要吗？</li>
-                <li>在跨文化交流中，你如何处理语言理解上的差异？</li>
-                <li>你曾经遇到过因为语言差异导致的尴尬情况吗？</li>
-                <li>说说你最喜欢的一个汉语词或表达方式？为什么喜欢？</li>
-                <li>你觉得哪些汉语表达方式很难翻译成你的母语？</li>
-                <li>如果可以创造一个新的汉语词，你会创造什么词？表达什么意思？</li>
-            </ol>
-        </div>
-
-        <h3>第9课: 别样鲁迅</h3>
-        <div class="topic"><strong>讨论话题: 文学人物的多面性</strong></div>
-        <div class="questions">
-            <ol>
-                <li>你对鲁迅了解多少？他对中国文学有什么贡献？</li>
-                <li>你最喜欢哪位作家？为什么？</li>
-                <li>你认为了解作家的个人生活对理解他们的作品重要吗？</li>
-                <li>一个作家应该如何平衡艺术创作和社会责任？</li>
-                <li>你读过的文学作品如何改变了你的思想或世界观？</li>
-                <li>如果可以和任何一位作家共进晚餐，你会选谁？会问他/她什么问题？</li>
-                <li>你读书时喜欢纸质书还是电子书？为什么？</li>
-                <li>你会推荐什么书给想了解你国家文化的朋友？</li>
-                <li>如果要把你的人生写成一本书，书名会是什么？</li>
-            </ol>
-        </div>
-    </div>
-
-    <div class="unit">
-        <h2>Unit 4: 走近科学</h2>
-
-        <h3>第10课: 争论的奇迹</h3>
-        <div class="topic"><strong>讨论话题: 辩论的价值与艺术</strong></div>
-        <div class="questions">
-            <ol>
-                <li>你认为辩论有什么社会价值？</li>
-                <li>在你的教育经历中，辩论扮演了什么角色？</li>
-                <li>你认为一个好的辩手需要具备哪些素质？</li>
-                <li>在你的文化中，人们如何看待公开辩论？</li>
-                <li>你曾经参加过辩论比赛吗？是什么体验？</li>
-                <li>你和朋友意见不同时，通常怎么解决分歧？</li>
-                <li>你认为在什么情况下应该坚持自己的观点，什么情况下应该妥协？</li>
-                <li>如果要在课堂上辩论一个话题，你最想辩论什么？</li>
-                <li>你觉得在社交媒体上和在现实生活中争论有什么不同？</li>
-            </ol>
-        </div>
-
-        <h3>第11课: 闹钟的危害</h3>
-        <div class="topic"><strong>讨论话题: 现代生活与健康</strong></div>
-        <div class="questions">
-            <ol>
-                <li>你每天几点起床？你用闹钟吗？</li>
-                <li>你认为闹钟对睡眠质量有什么影响？</li>
-                <li>你有什么保证良好睡眠的方法？</li>
-                <li>现代社会中，人们的睡眠习惯发生了哪些变化？</li>
-                <li>你认为科技对我们的生活习惯有积极还是消极影响？</li>
-                <li>你有没有特别的起床习惯或仪式？</li>
-                <li>你试过不用闹钟自然醒吗？感觉如何？</li>
-                <li>如果明天没有任何安排，你会几点起床？</li>
-                <li>你是早起的"百灵鸟"还是晚睡的"夜猫子"？这对你的生活有什么影响？</li>
-            </ol>
-        </div>
-
-        <h3>第12课: 海外用户玩儿微信</h3>
-        <div class="topic"><strong>讨论话题: 社交媒体的跨文化应用</strong></div>
-        <div class="questions">
-            <ol>
-                <li>你使用什么社交媒体平台？使用频率如何？</li>
-                <li>不同国家流行的社交媒体平台有什么差异？为什么？</li>
-                <li>社交媒体如何影响了你与朋友和家人的沟通方式？</li>
-                <li>你认为社交媒体在促进跨文化交流方面有什么作用？</li>
-                <li>使用社交媒体的最大优点和缺点是什么？</li>
-                <li>你每天花多少时间在社交媒体上？你觉得这个时间合理吗？</li>
-                <li>你有没有因为社交媒体上的信息而改变过某个想法或决定？</li>
-                <li>如果有一天所有社交媒体都消失了，你的生活会有什么变化？</li>
-                <li>你会在社交媒体上分享哪些内容？哪些内容绝对不会分享？</li>
-            </ol>
-        </div>
-    </div>
-
-    <div class="unit">
-        <h2>Unit 5: 放眼世界</h2>
-
-        <h3>第13课: 锅掰生活的"篦底"</h3>
-        <div class="topic"><strong>讨论话题: 生活方式的选择与改变</strong></div>
-        <div class="questions">
-            <ol>
-                <li>"锅掰生活的篦底"这个表达是什么意思？你如何理解？</li>
-                <li>你曾经彻底改变过自己的生活方式吗？是什么原因？</li>
-                <li>你认为人们为什么会对现有生活感到不满并寻求改变？</li>
-                <li>突破舒适区对个人成长有什么意义？</li>
-                <li>在做出重大生活改变前，人们应该考虑哪些因素？</li>
-                <li>如果你有机会重新开始生活，会选择什么样的生活方式？</li>
-                <li>你有没有一个想尝试但还没勇气去做的事情？是什么？</li>
-                <li>对你来说，什么是舒适的生活？什么是有意义的生活？</li>
-                <li>你认为人生中最值得改变的习惯是什么？</li>
-            </ol>
-        </div>
-
-        <h3>第14课: 北京的四合院</h3>
-        <div class="topic"><strong>讨论话题: 传统建筑与文化</strong></div>
-        <div class="questions">
-            <ol>
-                <li>你知道四合院的基本结构和特点吗？</li>
-                <li>传统建筑如何反映一个国家的文化价值观？</li>
-                <li>在你的国家，有什么具有代表性的传统建筑？</li>
-                <li>你认为现代城市应该如何平衡保护历史建筑和发展新建筑？</li>
-                <li>如果你有机会住在四合院里，你会愿意吗？为什么？</li>
-                <li>你住过的最有特色的房子是什么样的？</li>
-                <li>你理想中的家是什么样子的？位置、大小、风格？</li>
-                <li>你认为房子的设计如何影响人们的生活和心情？</li>
-                <li>如果可以为自己设计一个房间，你会加入哪些特别的元素？</li>
-            </ol>
-        </div>
-
-        <h3>第15课: 纸上谈兵</h3>
-        <div class="topic"><strong>讨论话题: 理论与实践的关系</strong></div>
-        <div class="questions">
-            <ol>
-                <li>你如何理解"纸上谈兵"这个成语？</li>
-                <li>你认为理论知识和实践经验哪个更重要？为什么？</li>
-                <li>在你的学习或工作中，你是否遇到过理论与实践脱节的情况？</li>
-                <li>如何才能更好地将理论知识应用到实际中？</li>
-                <li>在你的专业领域，理论学习和实践操作是如何平衡的？</li>
-                <li>你是先动手试错还是先研究理论再行动？</li>
-                <li>你曾经有过"纸上谈兵"的经历吗？结果如何？</li>
-                <li>你认为学校教育中实践课程够多吗？</li>
-                <li>如果你是老师，你会如何教授学生将理论应用到实践中？</li>
-            </ol>
-        </div>
-    </div>
-
-    <div class="unit">
-        <h2>Unit 6: 修养身心</h2>
-
-        <h3>第16课: 体重与节食</h3>
-        <div class="topic"><strong>讨论话题: 健康生活方式</strong></div>
-        <div class="questions">
-            <ol>
-                <li>在你的国家，人们对体重和外表有什么态度？</li>
-                <li>你认为健康的饮食习惯应该包括什么？</li>
-                <li>媒体如何影响人们对理想体型的认知？</li>
-                <li>你如何看待节食减肥这种方式？</li>
-                <li>在保持健康生活方式方面，你面临的最大挑战是什么？</li>
-                <li>你有没有尝试过特别的饮食方式？效果如何？</li>
-                <li>如果明天开始你必须改变一个饮食习惯，你会选择改变什么？</li>
-                <li>你最喜欢的运动是什么？多久做一次？</li>
-                <li>你认为"健康生活"的标准是什么？这个标准在不同文化中有差异吗？</li>
-            </ol>
-        </div>
-
-        <h3>第17课: 在最美好的时刻离开</h3>
-        <div class="topic"><strong>讨论话题: 人生选择的艺术</strong></div>
-        <div class="questions">
-            <ol>
-                <li>你如何理解"在最美好的时刻离开"这句话？</li>
-                <li>在职业生涯中，你认为什么时候是离开或转换的好时机？</li>
-                <li>你曾经在高峰时期主动放弃过什么吗？结果如何？</li>
-                <li>不同文化对"适时离开"有什么不同的看法？</li>
-                <li>你认为知道何时放手是一种智慧吗？为什么？</li>
-                <li>你能接受失败吗？你通常如何面对失败？</li>
-                <li>如果你特别喜欢一份工作，但薪水很低，你会怎么选择？</li>
-                <li>你有没有因为坚持而最终成功的经历？</li>
-                <li>如果一个朋友一直坚持做一件看起来不可能成功的事，你会怎么建议他/她？</li>
-            </ol>
-        </div>
-
-        <h3>第18课: 抽象艺术美不美</h3>
-        <div class="topic"><strong>讨论话题: 艺术欣赏与审美</strong></div>
-        <div class="questions">
-            <ol>
-                <li>你喜欢抽象艺术吗？为什么？</li>
-                <li>你认为什么样的艺术可以被称为"美"？</li>
-                <li>不同文化对艺术美的标准有什么差异？</li>
-                <li>你认为欣赏艺术需要专业知识吗？为什么？</li>
-                <li>在你的国家，年轻人对传统艺术和现代艺术的态度有什么不同？</li>
-                <li>你最近去过美术馆或博物馆吗？看到了什么让你印象深刻的作品？</li>
-                <li>如果你可以把任何一件艺术品带回家，你会选择什么？为什么？</li>
-                <li>你觉得艺术应该有一个"正确"的解读方式吗？</li>
-                <li>你有尝试过创作艺术作品吗？是什么类型的？感觉如何？</li>
-            </ol>
-        </div>
-    </div>
 </body>
 </html>
